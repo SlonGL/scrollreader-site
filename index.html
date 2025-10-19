@@ -168,6 +168,48 @@
             box-shadow: 0 6px 20px rgba(155, 255, 0, 0.6);
         }
 
+        .contact-section {
+            text-align: center;
+            background: #1f2937;
+            border-radius: 20px;
+            padding: 40px;
+            border: 1px solid #374151;
+            margin-bottom: 40px;
+        }
+
+        .contact-title {
+            font-size: 1.5em;
+            color: #f9fafb;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .contact-text {
+            color: #9ca3af;
+            font-size: 1em;
+            margin-bottom: 25px;
+        }
+
+        .contact-button {
+            display: inline-block;
+            background: transparent;
+            color: #9bff00;
+            padding: 12px 35px;
+            border: 2px solid #9bff00;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 1.1em;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .contact-button:hover {
+            background: #9bff00;
+            color: #111827;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(155, 255, 0, 0.4);
+        }
+
         footer {
             background: rgba(17, 24, 39, 0.95);
             color: #e5e7eb;
@@ -313,6 +355,12 @@
             <p class="cta-subtitle" id="cta-subtitle">Available on iPhone, iPad, and Mac</p>
             <a href="https://apps.apple.com/ru/app/scroll-reader/id1444861831" class="cta-button" target="_blank" rel="noopener noreferrer" id="cta-button">Download on App Store</a>
         </div>
+
+        <div class="contact-section">
+            <h2 class="contact-title" id="contact-title">Get in Touch</h2>
+            <p class="contact-text" id="contact-text">Have questions or feedback? We'd love to hear from you!</p>
+            <a href="mailto:it.studio.slon@gmail.com" class="contact-button" id="contact-button">Contact Us</a>
+        </div>
     </main>
     
     <footer>
@@ -348,6 +396,9 @@
                 ctaTitle: "Download Scroll Reader Today",
                 ctaSubtitle: "Available on iPhone, iPad, and Mac",
                 ctaButton: "Download on App Store",
+                contactTitle: "Get in Touch",
+                contactText: "Have questions or feedback? We'd love to hear from you!",
+                contactButton: "Contact Us",
                 footerTerms: "Terms of Use",
                 footerPrivacy: "Privacy Policy"
             },
@@ -373,6 +424,9 @@
                 ctaTitle: "Скачайте Scroll Reader сегодня",
                 ctaSubtitle: "Доступно на iPhone, iPad и Mac",
                 ctaButton: "Скачать в App Store",
+                contactTitle: "Связаться с нами",
+                contactText: "Есть вопросы или предложения? Мы будем рады услышать вас!",
+                contactButton: "Написать нам",
                 footerTerms: "Условия использования",
                 footerPrivacy: "Политика конфиденциальности"
             }
@@ -423,6 +477,9 @@
             document.getElementById('cta-title').textContent = t.ctaTitle;
             document.getElementById('cta-subtitle').textContent = t.ctaSubtitle;
             document.getElementById('cta-button').textContent = t.ctaButton;
+            document.getElementById('contact-title').textContent = t.contactTitle;
+            document.getElementById('contact-text').textContent = t.contactText;
+            document.getElementById('contact-button').textContent = t.contactButton;
             document.getElementById('footer-terms').textContent = t.footerTerms;
             document.getElementById('footer-privacy').textContent = t.footerPrivacy;
         }

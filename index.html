@@ -1,28 +1,435 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Название вашей компании</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Scroll Reader - Book Reading App</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #e5e7eb;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            background: rgba(31, 41, 55, 0.95);
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+            backdrop-filter: blur(10px);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .logo {
+            max-width: 80px;
+            height: auto;
+            display: block;
+        }
+
+        .app-name {
+            font-family: 'Russo One', sans-serif;
+            font-size: 2.5em;
+            color: #9bff00;
+            letter-spacing: 2px;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        main {
+            flex: 1;
+            padding: 60px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .hero {
+            background: #1f2937;
+            border-radius: 20px;
+            padding: 60px 40px;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            border: 1px solid #374151;
+            margin-bottom: 60px;
+        }
+
+        .hero h1 {
+            font-size: 3em;
+            color: #f9fafb;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3em;
+            color: #d1d5db;
+            margin-bottom: 40px;
+            line-height: 1.8;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .feature-card {
+            background: #1f2937;
+            border: 1px solid #374151;
+            border-radius: 15px;
+            padding: 30px;
+            transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(155, 255, 0, 0.2);
+            border-color: #9bff00;
+        }
+
+        .feature-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .feature-card h3 {
+            color: #9bff00;
+            font-size: 1.4em;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .feature-card p {
+            color: #cbd5e1;
+            font-size: 1em;
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        .cta-section {
+            text-align: center;
+            background: #1f2937;
+            border-radius: 20px;
+            padding: 50px 40px;
+            border: 1px solid #374151;
+            margin-bottom: 40px;
+        }
+
+        .cta-title {
+            font-size: 2em;
+            color: #f9fafb;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .cta-subtitle {
+            color: #9ca3af;
+            font-size: 1.1em;
+            margin-bottom: 30px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #9bff00;
+            color: #111827;
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 1.2em;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 15px rgba(155, 255, 0, 0.4);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(155, 255, 0, 0.6);
+        }
+
+        footer {
+            background: rgba(17, 24, 39, 0.95);
+            color: #e5e7eb;
+            text-align: center;
+            padding: 30px 20px;
+            backdrop-filter: blur(10px);
+            border-top: 1px solid #374151;
+        }
+
+        footer a {
+            color: #9bff00;
+            text-decoration: none;
+            margin: 0 15px;
+            transition: color 0.3s;
+            font-weight: 500;
+        }
+
+        footer a:hover {
+            color: #b8ff4d;
+            text-decoration: underline;
+        }
+
+        .separator {
+            color: #9ca3af;
+            margin: 0 5px;
+        }
+
+        @media (max-width: 768px) {
+            .app-name {
+                font-size: 1.5em;
+                letter-spacing: 1px;
+            }
+
+            .logo {
+                max-width: 60px;
+            }
+
+            .hero {
+                padding: 40px 25px;
+            }
+
+            .hero h1 {
+                font-size: 2em;
+            }
+
+            .hero-subtitle {
+                font-size: 1.1em;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .feature-card {
+                padding: 25px;
+            }
+
+            .cta-section {
+                padding: 35px 25px;
+            }
+
+            .cta-title {
+                font-size: 1.5em;
+            }
+
+            footer a {
+                display: block;
+                margin: 10px 0;
+            }
+
+            .separator {
+                display: none;
+            }
+        }
+    </style>
 </head>
 <body>
     <header>
-        <div class="container">
-            <img src="logo.png" alt="Логотип" class="logo">
+        <div class="header-content">
+            <img src="logo.png" alt="Scroll Reader Logo" class="logo">
+            <h1 class="app-name">Scroll Reader</h1>
         </div>
     </header>
     
-    <main class="container">
-        <h1>Добро пожаловать</h1>
-        <p>Содержимое главной страницы</p>
+    <main>
+        <div class="hero">
+            <h1 id="hero-title">Welcome to Scroll Reader</h1>
+            <p class="hero-subtitle" id="hero-subtitle">Your personal book reading companion with innovative hands-free scrolling</p>
+        </div>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <span class="feature-icon">👁️</span>
+                <h3 id="feature1-title">Eye-Controlled Scrolling</h3>
+                <p id="feature1-text">Read hands-free using eye tracking or set automatic scrolling at your preferred speed. Perfect for comfortable reading in any position.</p>
+            </div>
+
+            <div class="feature-card">
+                <span class="feature-icon">☁️</span>
+                <h3 id="feature2-title">Seamless iCloud Sync</h3>
+                <p id="feature2-text">One universal app for iPhone, iPad, and Mac. Your library automatically syncs across all Apple devices via iCloud.</p>
+            </div>
+
+            <div class="feature-card">
+                <span class="feature-icon">📚</span>
+                <h3 id="feature3-title">Multiple Formats</h3>
+                <p id="feature3-text">Supports FB2, EPUB, and TXT formats. Import books directly from ZIP archives with selective extraction.</p>
+            </div>
+
+            <div class="feature-card">
+                <span class="feature-icon">🎁</span>
+                <h3 id="feature4-title">Free Trial Period</h3>
+                <p id="feature4-text">Try all premium features with a full-featured free trial period. No commitment required.</p>
+            </div>
+
+            <div class="feature-card">
+                <span class="feature-icon">👨‍👩‍👧‍👦</span>
+                <h3 id="feature5-title">Family Subscription</h3>
+                <p id="feature5-text">Share your subscription with family members at no additional cost. One subscription for everyone.</p>
+            </div>
+
+            <div class="feature-card">
+                <span class="feature-icon">🤝</span>
+                <h3 id="feature6-title">Share Books</h3>
+                <p id="feature6-text">Easily share your favorite books with friends and family directly from the app.</p>
+            </div>
+
+            <div class="feature-card">
+                <span class="feature-icon">🌍</span>
+                <h3 id="feature7-title">30+ Languages</h3>
+                <p id="feature7-text">Interface available in over 30 languages, including RTL support for Arabic and Hebrew.</p>
+            </div>
+
+            <div class="feature-card">
+                <span class="feature-icon">🔒</span>
+                <h3 id="feature8-title">Privacy First</h3>
+                <p id="feature8-text">All your data stays on your device and iCloud. We don't collect or track any personal information.</p>
+            </div>
+        </div>
+
+        <div class="cta-section">
+            <h2 class="cta-title" id="cta-title">Download Scroll Reader Today</h2>
+            <p class="cta-subtitle" id="cta-subtitle">Available on iPhone, iPad, and Mac</p>
+            <a href="https://apps.apple.com/ru/app/scroll-reader/id1444861831" class="cta-button" target="_blank" rel="noopener noreferrer" id="cta-button">Download on App Store</a>
+        </div>
     </main>
     
     <footer>
-        <div class="container">
-            <a href="terms.html">Terms of Use</a> | 
-            <a href="privacy.html">Privacy Policy</a>
+        <div>
+            <a href="terms.html" id="footer-terms">Terms of Use</a>
+            <span class="separator">|</span>
+            <a href="privacy.html" id="footer-privacy">Privacy Policy</a>
         </div>
+        <p style="margin-top: 15px; color: #9ca3af; font-size: 0.9em;" id="copyright"></p>
     </footer>
+
+    <script>
+        const translations = {
+            en: {
+                heroTitle: "Welcome to Scroll Reader",
+                heroSubtitle: "Your personal book reading companion with innovative hands-free scrolling",
+                feature1Title: "Eye-Controlled Scrolling",
+                feature1Text: "Read hands-free using eye tracking or set automatic scrolling at your preferred speed. Perfect for comfortable reading in any position.",
+                feature2Title: "Seamless iCloud Sync",
+                feature2Text: "One universal app for iPhone, iPad, and Mac. Your library automatically syncs across all Apple devices via iCloud.",
+                feature3Title: "Multiple Formats",
+                feature3Text: "Supports FB2, EPUB, and TXT formats. Import books directly from ZIP archives with selective extraction.",
+                feature4Title: "Free Trial Period",
+                feature4Text: "Try all premium features with a full-featured free trial period. No commitment required.",
+                feature5Title: "Family Subscription",
+                feature5Text: "Share your subscription with family members at no additional cost. One subscription for everyone.",
+                feature6Title: "Share Books",
+                feature6Text: "Easily share your favorite books with friends and family directly from the app.",
+                feature7Title: "30+ Languages",
+                feature7Text: "Interface available in over 30 languages, including RTL support for Arabic and Hebrew.",
+                feature8Title: "Privacy First",
+                feature8Text: "All your data stays on your device and iCloud. We don't collect or track any personal information.",
+                ctaTitle: "Download Scroll Reader Today",
+                ctaSubtitle: "Available on iPhone, iPad, and Mac",
+                ctaButton: "Download on App Store",
+                footerTerms: "Terms of Use",
+                footerPrivacy: "Privacy Policy"
+            },
+            ru: {
+                heroTitle: "Добро пожаловать в Scroll Reader",
+                heroSubtitle: "Ваш персональный помощник для чтения с инновационной прокруткой без использования рук",
+                feature1Title: "Управление взглядом",
+                feature1Text: "Читайте без помощи рук, используя отслеживание взгляда, или настройте автоматическую прокрутку с нужной скоростью. Идеально для комфортного чтения в любом положении.",
+                feature2Title: "Синхронизация через iCloud",
+                feature2Text: "Универсальное приложение для iPhone, iPad и Mac. Ваша библиотека автоматически синхронизируется на всех устройствах Apple через iCloud.",
+                feature3Title: "Множество форматов",
+                feature3Text: "Поддержка форматов FB2, EPUB и TXT. Импортируйте книги напрямую из ZIP-архивов с выборочным извлечением.",
+                feature4Title: "Бесплатный пробный период",
+                feature4Text: "Попробуйте все премиум-функции с полнофункциональным бесплатным пробным периодом. Никаких обязательств.",
+                feature5Title: "Семейная подписка",
+                feature5Text: "Делитесь подпиской с членами семьи без дополнительной оплаты. Одна подписка для всех.",
+                feature6Title: "Делитесь книгами",
+                feature6Text: "Легко делитесь любимыми книгами с друзьями и семьей прямо из приложения.",
+                feature7Title: "Более 30 языков",
+                feature7Text: "Интерфейс доступен на более чем 30 языках, включая поддержку RTL для арабского и иврита.",
+                feature8Title: "Конфиденциальность превыше всего",
+                feature8Text: "Все ваши данные остаются на устройстве и в iCloud. Мы не собираем и не отслеживаем личную информацию.",
+                ctaTitle: "Скачайте Scroll Reader сегодня",
+                ctaSubtitle: "Доступно на iPhone, iPad и Mac",
+                ctaButton: "Скачать в App Store",
+                footerTerms: "Условия использования",
+                footerPrivacy: "Политика конфиденциальности"
+            }
+        };
+
+        function detectLanguage() {
+            const userLang = navigator.language || navigator.userLanguage;
+            const lowerLang = userLang.toLowerCase();
+            
+            // Проверяем, что это не Украина
+            if (lowerLang.startsWith('uk') || lowerLang.includes('ua')) {
+                return 'en';
+            }
+            
+            // Русскоговорящие страны (исключая Украину)
+            const russianLanguages = ['ru', 'be', 'kk', 'ky', 'tg', 'uz', 'az', 'hy', 'ka'];
+            
+            for (let lang of russianLanguages) {
+                if (lowerLang.startsWith(lang)) {
+                    return 'ru';
+                }
+            }
+            
+            // По умолчанию английский
+            return 'en';
+        }
+
+        function setLanguage(lang) {
+            const t = translations[lang];
+            document.getElementById('hero-title').textContent = t.heroTitle;
+            document.getElementById('hero-subtitle').textContent = t.heroSubtitle;
+            document.getElementById('feature1-title').textContent = t.feature1Title;
+            document.getElementById('feature1-text').textContent = t.feature1Text;
+            document.getElementById('feature2-title').textContent = t.feature2Title;
+            document.getElementById('feature2-text').textContent = t.feature2Text;
+            document.getElementById('feature3-title').textContent = t.feature3Title;
+            document.getElementById('feature3-text').textContent = t.feature3Text;
+            document.getElementById('feature4-title').textContent = t.feature4Title;
+            document.getElementById('feature4-text').textContent = t.feature4Text;
+            document.getElementById('feature5-title').textContent = t.feature5Title;
+            document.getElementById('feature5-text').textContent = t.feature5Text;
+            document.getElementById('feature6-title').textContent = t.feature6Title;
+            document.getElementById('feature6-text').textContent = t.feature6Text;
+            document.getElementById('feature7-title').textContent = t.feature7Title;
+            document.getElementById('feature7-text').textContent = t.feature7Text;
+            document.getElementById('feature8-title').textContent = t.feature8Title;
+            document.getElementById('feature8-text').textContent = t.feature8Text;
+            document.getElementById('cta-title').textContent = t.ctaTitle;
+            document.getElementById('cta-subtitle').textContent = t.ctaSubtitle;
+            document.getElementById('cta-button').textContent = t.ctaButton;
+            document.getElementById('footer-terms').textContent = t.footerTerms;
+            document.getElementById('footer-privacy').textContent = t.footerPrivacy;
+        }
+
+        const lang = detectLanguage();
+        setLanguage(lang);
+        document.getElementById('copyright').textContent = `© 2019-${new Date().getFullYear()} IT Studio SLON. All rights reserved.`;
+    </script>
 </body>
 </html>
